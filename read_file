@@ -1,0 +1,52 @@
+#include <iostream>
+#include <fstream>
+#include <cctype>
+#include <string>
+
+using namespace std;
+
+int main() {
+    int n, m, k;
+    n = 0;
+    k = 0;
+    m = 0;
+    //динаммический массив (в него будем читать)
+    char* a = new char [n];
+    ifstream File;
+    File.open("file1.txt");
+    //чтение из файла
+    if (File) {
+        while (true)
+        {
+            //запись в массив
+            File >> *a;
+            //проверяем конец файла или нет
+            if (File.eof())
+                break;
+            // проверяем чем являются символы в массиве
+            if (isalnum(*a)) {
+                cout << *a << "  - symbol" << '\t';//буква или цифра
+                n++;
+            }
+            if (isalpha(*a)) {
+                cout <<  *a<<"  - letter" << '\t' << endl;//буква
+                k++;
+            }
+            if (isdigit(*a)) {
+                cout << *a<<"  - number" << '\t';//цифра
+                cout << endl;
+                m++;
+            }
+
+        }
+    }
+    else cout << "File cannot be find" << endl;
+        File.close();
+        cout << "number of symbols = " << n << endl;
+        cout << "number of letters = " << k << endl;
+        cout << "number of numbers = " << m << endl;
+    
+
+   
+    return 0;
+}
